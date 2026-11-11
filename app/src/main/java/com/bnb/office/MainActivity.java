@@ -67,6 +67,11 @@ public class MainActivity extends Activity {
 
         web.addJavascriptInterface(new Bridge(), "BnBAndroid");
 
+        Reminders.schedule(getApplicationContext());
+        if (Build.VERSION.SDK_INT >= 33 && checkSelfPermission("android.permission.POST_NOTIFICATIONS") != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 77);
+        }
+
         web.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView v, WebResourceRequest req) {
@@ -173,6 +178,12 @@ public class MainActivity extends Activity {
     }
 
     class Bridge {
+        /** Open tasks from the web app -> local alarms (2 weeks, 1 week, 1 day before due). */
+        @JavascriptInterface
+        public void setReminders(String json) {
+            Reminders.save(getApplicationContext(), json);
+        }
+
         @JavascriptInterface
         public void saveBase64(String name, String mime, String b64) {
             try {
