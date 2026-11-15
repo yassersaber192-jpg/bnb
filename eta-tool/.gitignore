@@ -4,3 +4,7 @@ output/
 *.p12
 __pycache__/
 .pytest_cache/
+gui_settings.json
+build/
+dist/
+*.spec

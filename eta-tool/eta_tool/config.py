@@ -18,6 +18,41 @@ ENVIRONMENTS = {
 }
 
 
+EXAMPLE_CONFIG = {
+    "companies": {
+        "sample": {
+            "rin": "100000000",
+            "name": "شركة المثال للتجارة",
+            "activity_code": "4620",
+            "environment": "preprod",
+            "address": {
+                "branchID": "0",
+                "country": "EG",
+                "governate": "Cairo",
+                "regionCity": "Nasr City",
+                "street": "شارع مكرم عبيد",
+                "buildingNumber": "10"
+            },
+            "client_id": "ضع-هنا-Client-ID-الخاص-بالنظام",
+            "client_secret": "ضع-هنا-Client-Secret",
+            "token_library": "C:\\Windows\\System32\\eps2003csp11.dll",
+            "token_label": "",
+            "pos": {
+                "main": {
+                    "serial": "رقم-سيريال-نقطة-البيع",
+                    "client_id": "Client-ID-الخاص-بنقطة-البيع",
+                    "client_secret": "Client-Secret-الخاص-بنقطة-البيع",
+                    "os_version": "windows",
+                    "model_framework": "1",
+                    "pre_shared_key": "",
+                    "branch_code": "0"
+                }
+            }
+        }
+    }
+}
+
+
 @dataclass
 class Address:
     governate: str
@@ -70,6 +105,7 @@ class Company:
     client_secret: str = ""
     token_library: str = ""
     token_label: str = ""
+    pfx_path: str = ""
     pos: dict[str, POS] = field(default_factory=dict)
 
     @property
@@ -96,6 +132,7 @@ def load_companies(path: str | Path) -> dict[str, Company]:
                 client_secret=c.get("client_secret", ""),
                 token_library=c.get("token_library", ""),
                 token_label=c.get("token_label", ""),
+                pfx_path=c.get("pfx_path", ""),
                 pos=pos,
             )
         except (KeyError, TypeError) as exc:
