@@ -1,0 +1,33 @@
+{
+  "companies": {
+    "sample": {
+      "rin": "100000000",
+      "name": "شركة المثال للتجارة",
+      "activity_code": "4620",
+      "environment": "preprod",
+      "address": {
+        "branchID": "0",
+        "country": "EG",
+        "governate": "Cairo",
+        "regionCity": "Nasr City",
+        "street": "شارع مكرم عبيد",
+        "buildingNumber": "10"
+      },
+      "client_id": "ضع-هنا-Client-ID-الخاص-بالنظام",
+      "client_secret": "ضع-هنا-Client-Secret",
+      "token_library": "C:\\Windows\\System32\\eps2003csp11.dll",
+      "token_label": "",
+      "pos": {
+        "main": {
+          "serial": "رقم-سيريال-نقطة-البيع",
+          "client_id": "Client-ID-الخاص-بنقطة-البيع",
+          "client_secret": "Client-Secret-الخاص-بنقطة-البيع",
+          "os_version": "windows",
+          "model_framework": "1",
+          "pre_shared_key": "",
+          "branch_code": "0"
+        }
+      }
+    }
+  }
+}
